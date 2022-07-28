@@ -2,6 +2,11 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import history from 'utils/history';
 import Catalog from "..";
+import { server } from './fixtures';
+
+beforeAll(() => server.listen());
+afterEach(() => server.restoreHandlers());
+afterAll(() => server.close());
 
 describe( 'should render Catalog with products', () => {
 
@@ -19,7 +24,7 @@ describe( 'should render Catalog with products', () => {
     });    
 
     //CENÁRIO-2
-    test( 'should render Product async', async () => {
+    test.only( 'should render Product async', async () => {
     
         render(
             <Router history={history}>
