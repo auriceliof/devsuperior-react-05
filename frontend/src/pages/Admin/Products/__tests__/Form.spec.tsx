@@ -24,8 +24,8 @@ describe('Product form create tests', () => {
         })
     })
 
-    test( 'Should render form', async() => {
-    
+    test( 'Should show toast and redirect when form correctly', async() => {
+        
         render(
             <Router history={history}>
                 <ToastContainer />
@@ -56,5 +56,7 @@ describe('Product form create tests', () => {
             const toastElement = screen.getByText('Produto cadastrado com sucesso')
                 expect(toastElement).toBeInTheDocument();
         });
+
+        expect(history.location.pathname).toEqual('/admin/products');
     });            
 }); 
