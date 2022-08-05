@@ -24,6 +24,8 @@ describe('Product form create tests', () => {
         })
     })
 
+    // CENÁRIO-1
+
     test( 'Should show toast and redirect when form correctly', async() => {
         
         render(
@@ -58,5 +60,28 @@ describe('Product form create tests', () => {
         });
 
         expect(history.location.pathname).toEqual('/admin/products');
-    });            
+    });
+    
+
+    // CENÁRIO-2
+
+    test( 'Should show 5 validation messages when just clicking submit', async() => {
+        
+        render(
+            <Router history={history}>
+                <Form />
+            </Router>
+        );
+    
+        //screen.debug();
+
+        const submitButton = screen.getByRole('button', { name: /salvar/i });
+
+        userEvent.click(submitButton);
+        
+        await waitFor(() => {
+            const messages = screen.getAllByText('Campo obrigatório');
+            expect(messages).toHaveLength(5);
+        })
+    });  
 }); 
