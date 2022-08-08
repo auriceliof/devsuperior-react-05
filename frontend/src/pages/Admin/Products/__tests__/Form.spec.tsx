@@ -132,6 +132,8 @@ describe('Product form UPDATE tests', () => {
         })
     })
 
+    // CENÁRIO-4
+    
     test( 'Should show toast and redirect when form correctly', async() => {
         
         render(
