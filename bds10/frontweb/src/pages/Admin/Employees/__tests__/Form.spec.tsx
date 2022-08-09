@@ -116,7 +116,7 @@ describe('Employee form create tests', () => {
             </Router>
         );
     
-        const cancelButton = screen.getByRole('button', { name: /cancelar/i})
+        const cancelButton = screen.getByRole( 'button', { name: /cancelar/i } )
         userEvent.click(cancelButton);
 
         await waitFor(() => {
