@@ -86,6 +86,7 @@ const Form = () => {
               </div>
 
               <div className="margin-bottom-30">
+                <label htmlFor="department" className="d-none">Departamento</label>
                 <Controller
                   name="department"
                   rules={{ required: true }}
