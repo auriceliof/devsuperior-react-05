@@ -41,6 +41,7 @@ describe('Employee form create tests', () => {
         expect(history.location.pathname).toEqual('/admin/employees');
     });
 
+    //TEST-2
     test('should show 3 error messages when just clicking submit', async () => {
 
         render(
@@ -108,6 +109,7 @@ describe('Employee form create tests', () => {
         });
     });
 
+    //TEST-1
     test('should redirect when canceling', async () => {
 
         render(
