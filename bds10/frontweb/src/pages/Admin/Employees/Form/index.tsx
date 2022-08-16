@@ -72,6 +72,10 @@ const Form = () => {
                 <input
                   {...register('email', {
                     required: 'Campo obrigatório',
+                    pattern: {
+                      value: /\S+@\S+\.\S+/,
+                      message: 'Email inválido',
+                    },
                   })}
                   type="text"
                   className={`form-control base-input ${errors.name ? 'is-invalid' : ''
