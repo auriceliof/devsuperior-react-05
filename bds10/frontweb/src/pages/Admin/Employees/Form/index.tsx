@@ -6,10 +6,34 @@ import { Department } from 'types/department';
 import { useEffect, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
 import { BASE_URL, requestBackend } from 'util/requests'
+import { toast } from 'react-toastify';
 import './styles.css';
 
 const Form = () => {
 
+  //INSERÇÃO E TOAST
+  const { register, handleSubmit, control, formState: { errors } } = useForm<Employee>();
+
+  const onSubmit = (formData: Employee) => {
+    const config: AxiosRequestConfig = {
+      method: 'POST',
+      url:"/employees",
+      data: formData,
+      withCredentials: true
+    };
+
+    requestBackend(config)
+    .then(() => {
+      toast.info('Cadastrado com sucesso')
+      history.push('/admin/employees');
+    })
+    .catch(() => {
+      toast.error('Erro ao cadastar')
+    });
+  };
+  //----------------------
+
+  //CATEGORIAS
   const [selectDepartment, setSelectDepartment] = useState<Department[]>([]);
 
   useEffect(() => {
@@ -23,25 +47,15 @@ const Form = () => {
         setSelectDepartment(response.data)
       })
   }, []);
+  //---------------------
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<Employee>();
-
-  const onSubmit = (formData: Employee) => {
-    const data = {
-      ...formData,
-    };
-  }
-
+  //CANCELAR E RETORNAR
   const history = useHistory();
 
   const handleCancel = () => {
     history.push('/admin/employees');
   };
+  //--------------------
 
   return (
     <div className="employee-crud-container">
